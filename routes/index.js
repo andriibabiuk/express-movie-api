@@ -13,16 +13,13 @@ router.get('/most_popular', function (req, res, next) {
 	if (page === undefined) {
 		page = 1;
 	}
-	if (req.query.api_key != 123456789) {
-		res.json('Invalid API Key');
-	} else {
-		let results = movies.filter(movie => {
-			return movie.most_popular;
-		});
-		let indexToStart = (page - 1) * 20;
 
-		results.slice(indexToStart, indexToStart + 19);
-		res.json({ page, results });
-	}
+	let results = movies.filter(movie => {
+		return movie.most_popular;
+	});
+	let indexToStart = (page - 1) * 20;
+
+	results.slice(indexToStart, indexToStart + 19);
+	res.json({ page, results });
 });
 module.exports = router;
